@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '08acc464261cf42500c6f5fc48cd63e3620e9f8a',
         'name' => 'ipe/projetofinal',
         'dev' => true,
     ),
     'versions' => array(
         'ipe/projetofinal' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '08acc464261cf42500c6f5fc48cd63e3620e9f8a',
             'dev_requirement' => false,
         ),
         'lcobucci/jwt' => array(
@@ -29,12 +29,12 @@
             'dev_requirement' => false,
         ),
         'phpstan/phpstan' => array(
-            'pretty_version' => '1.10.39',
-            'version' => '1.10.39.0',
+            'pretty_version' => '1.10.41',
+            'version' => '1.10.41.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpstan/phpstan',
             'aliases' => array(),
-            'reference' => 'd9dedb0413f678b4d03cbc2279a48f91592c97c4',
+            'reference' => 'c6174523c2a69231df55bdc65b61655e72876d76',
             'dev_requirement' => true,
         ),
         'psr/clock' => array(
