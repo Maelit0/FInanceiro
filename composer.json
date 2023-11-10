@@ -1,0 +1,22 @@
+{
+    "name": "ipe/projetofinal",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Routes\\": "routes/",
+            "Library\\": "Library/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ismael renan",
+            "email": "ismaelrenan091@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^1.10"
+    },
+    "require": {
+        "lcobucci/jwt": "^5.1"
+    }
+}
