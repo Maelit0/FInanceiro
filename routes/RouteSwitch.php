@@ -4,7 +4,6 @@ namespace Routes;
 
 use App\Controller\HomeController;
 use App\Controller\ProdutoController;
-use App\Core\Middleware\JwtMiddleware;
 use Exception;
 use Projeto\middleware\JwtValidator;
 
