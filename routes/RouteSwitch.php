@@ -6,6 +6,7 @@ use App\Controller\HomeController;
 use App\Controller\ProdutoController;
 use App\Core\Middleware\JwtMiddleware;
 use Exception;
+use Projeto\middleware\JwtValidator;
 
 abstract class RouteSwitch
 {
@@ -73,9 +74,9 @@ abstract class RouteSwitch
     {
         $cliente = new ProdutoController();
 
-        $middleware = new JwtMiddleware();
+        $middleware = new JwtValidator();
 
-        $verificacao =  $middleware->verificar();
+        $verificacao =  $middleware->verify();
 
         if(!$verificacao){
             throw new Exception("Token Inválido ou não fornecido");

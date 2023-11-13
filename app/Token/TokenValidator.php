@@ -10,7 +10,7 @@ use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 
 
-class Jwt
+class JwtValidator
 {
     public function verify()
     {
