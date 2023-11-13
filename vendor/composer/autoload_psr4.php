@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Token\\' => array($baseDir . '/Token'),
     'Routes\\' => array($baseDir . '/routes'),
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'Library\\' => array($baseDir . '/Library'),

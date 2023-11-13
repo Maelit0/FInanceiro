@@ -4,7 +4,8 @@
         "psr-4": {
             "App\\": "app/",
             "Routes\\": "routes/",
-            "Library\\": "Library/"
+            "Library\\": "Library/",
+            "Token\\": "Token/"
         }
     },
     "authors": [

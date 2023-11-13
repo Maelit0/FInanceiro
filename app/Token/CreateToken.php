@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App\Token;
 
 use DateTimeImmutable;
 use Lcobucci\JWT\Encoding\ChainedFormatter;

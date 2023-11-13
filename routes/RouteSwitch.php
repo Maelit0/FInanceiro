@@ -4,8 +4,9 @@ namespace Routes;
 
 use App\Controller\HomeController;
 use App\Controller\ProdutoController;
+use App\Token\JwtValidator;
+use App\Token\TokenValidator;
 use Exception;
-use Projeto\middleware\JwtValidator;
 
 abstract class RouteSwitch
 {
@@ -46,16 +47,7 @@ abstract class RouteSwitch
 
     protected function movimentacao()
     {
-        $movimentacao = new ProdutoController();
-
-        $middleware = new JwtValidator();
-
-        $verificacao =  $middleware->verify();
-
-        if (!$verificacao) {
-            throw new Exception("Token Inválido ou não fornecido");
-        }
-
+       
         $movimentacao = new HomeController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -83,7 +75,7 @@ abstract class RouteSwitch
     {
         $cliente = new ProdutoController();
 
-        $middleware = new JwtValidator();
+        $middleware = new TokenValidator();
 
         $verificacao =  $middleware->verify();
 
@@ -117,7 +109,7 @@ abstract class RouteSwitch
 
         $historico = new ProdutoController();
 
-        $middleware = new JwtValidator();
+        $middleware = new TokenValidator();
 
         $verificacao =  $middleware->verify();
 

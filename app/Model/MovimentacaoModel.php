@@ -19,6 +19,11 @@ class MovimentacaoModel
         $inserir = new Insert();
         return $inserir->insert('movimentacao', $arrValues);
     }
+    public function  selectOne($id)
+    {
+        $pegarUm = new Select();
+        return $pegarUm->select('movimentacao', ['*'], ["id=$id"]);
+    }
     public function atualizar($id, $params)
     {
         $update = new Update();

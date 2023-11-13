@@ -1,7 +1,6 @@
 <?php
 
-namespace Projeto\middleware;
-
+namespace App\Token;
 require '../vendor/autoload.php';
 
 use Lcobucci\JWT\Signer\Key\InMemory;
@@ -10,7 +9,7 @@ use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 
 
-class JwtValidator
+class TokenValidator
 {
     public function verify()
     {

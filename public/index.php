@@ -18,9 +18,5 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $router = new Router;
 $router->run($requestUri);
 
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname= bancoprojeto;user= ismael;password=ismael123");
-$select = new Select($pdo);
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=bancoprojeto;user=ismael;password=ismael123");
-$insert = new Insert($pdo);
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname= bancoprojeto;user= ismael;password=ismael123");
-$update = new Update($pdo);
+
+

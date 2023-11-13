@@ -17,7 +17,7 @@ class ServicoController extends ServicoModel
     }
     public function show($id)
     {
-        return $this->selectOne($id);
+        return $this->getOne($id);
     }
     public function update($id, $params)
     {
