@@ -9,24 +9,24 @@ use App\Library\Update;
 
 class MovimentacaoModel
 {
-    public function  getAll()
+    public function getAll()
     {
         $movimentacao = new Select();
         return $movimentacao->select('movimentacao', ['*']);
     }
-    public function  insert($arrValues)
+    public function insert($arrValues)
     {
         $inserir = new Insert();
-        return $inserir ->insert('movimentacao',$arrValues);
+        return $inserir->insert('movimentacao', $arrValues);
     }
-    public function  atualizar($id,$params)
+    public function atualizar($id, $params)
     {
         $update = new Update();
-        return $update->update('movimentacao',$params,$id);
+        return $update->update('movimentacao', $params, $id);
     }
-    public function  deletar($params)
+    public function deletar($params)
     {
         $deletar = new Delete();
-        return $deletar->delete('movimentacao',$params);
+        return $deletar->delete('movimentacao', $params);
     }
 }

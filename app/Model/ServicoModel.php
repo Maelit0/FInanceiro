@@ -17,6 +17,11 @@ class ServicoModel
         $salvar = new Insert();
         return $salvar->insert('servicos', $arrValues);
     }
+    public function  selectOne($id)
+    {
+        $pegarUm = new Select();
+        return $pegarUm->select('servicos', ['*'], ["id=$id"]);
+    }
     public function  atualizar($id, $params)
     {
         $update = new Update();

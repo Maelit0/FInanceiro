@@ -15,7 +15,7 @@ class ProdutoModel
         $select = new Select();
         return $select->select('produtos', ['*']);
     }
-    public function  insert($arrValues)
+    public function insert($arrValues)
     {
         $salvar = new Insert();
         return $salvar->insert('produtos',$arrValues);
