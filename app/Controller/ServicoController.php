@@ -21,7 +21,7 @@ class ServicoController extends ServicoModel
     }
     public function update($id, $params)
     {
-        return $this->update('servico', $params, $id);
+        return $this->update('servicos', $params, $id);
     }
     public function destroy($id)
     {

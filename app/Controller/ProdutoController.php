@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Model\ProdutoModel;
 
-class ProdutoController extends ProdutoModel{
+class ProdutoController extends ProdutoModel
+{
 
     public function index()
     {
@@ -18,14 +19,12 @@ class ProdutoController extends ProdutoModel{
     {
         return $this->selectOne($id);
     }
-    public function  update($id,$params)
+    public function  update($id, $params)
     {
-        return $this->update($id,$params);
+        return $this->update('produtos', $id, $params);
     }
     public function  destroy($id)
     {
-        return $this->deletar($id);
+        return $this->deletar($id,'movimentacao');
     }
-    
-
 }

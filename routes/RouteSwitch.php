@@ -4,6 +4,8 @@ namespace Routes;
 
 use App\Controller\HomeController;
 use App\Controller\ProdutoController;
+use App\Core\Middleware\JwtMiddleware;
+use Exception;
 
 abstract class RouteSwitch
 {
@@ -71,6 +73,14 @@ abstract class RouteSwitch
     {
         $cliente = new ProdutoController();
 
+        $middleware = new JwtMiddleware();
+
+        $verificacao =  $middleware->verificar();
+
+        if(!$verificacao){
+            throw new Exception("Token Inválido ou não fornecido");
+        }
+
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             return $cliente->show($this->uri);
         }
@@ -91,5 +101,4 @@ abstract class RouteSwitch
             return $cliente->destroy($this->uri);
         }
     }
-    // protected function
 }

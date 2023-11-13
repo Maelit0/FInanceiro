@@ -9,6 +9,6 @@ class HomeModel
     public function getAll()
     {
         $home = new Select();
-        return $home->select('movimentacoes',['*']);
+        return $home->select('movimentacao',['*']);
     }
 }
