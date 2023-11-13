@@ -40,7 +40,7 @@ class Jwt
             return true;
           
         } catch (\Exception $e) {
-            echo 'Token JWT inválido: ' . $e->getMessage();
+             $e->getMessage('Esse Token não Existe!');
             return false;
         }
     }
