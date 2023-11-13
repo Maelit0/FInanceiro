@@ -46,6 +46,16 @@ abstract class RouteSwitch
 
     protected function movimentacao()
     {
+        $movimentacao = new ProdutoController();
+
+        $middleware = new JwtValidator();
+
+        $verificacao =  $middleware->verify();
+
+        if (!$verificacao) {
+            throw new Exception("Token Inválido ou não fornecido");
+        }
+
         $movimentacao = new HomeController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -77,7 +87,7 @@ abstract class RouteSwitch
 
         $verificacao =  $middleware->verify();
 
-        if(!$verificacao){
+        if (!$verificacao) {
             throw new Exception("Token Inválido ou não fornecido");
         }
 
@@ -99,6 +109,40 @@ abstract class RouteSwitch
 
         if ($this->requestMethod == "DELETE") {
             return $cliente->destroy($this->uri);
+        }
+    }
+
+    protected function  historico()
+    {
+
+        $historico = new ProdutoController();
+
+        $middleware = new JwtValidator();
+
+        $verificacao =  $middleware->verify();
+
+        if (!$verificacao) {
+            throw new Exception("Token Inválido ou não fornecido");
+        }
+
+        if ($this->requestMethod == "GET" && !empty($this->uri)) {
+            return $historico->show($this->uri);
+        }
+
+        if ($this->requestMethod == "GET") {
+            return $historico->index();
+        }
+
+        if ($this->requestMethod == "POST") {
+            return $historico->store($_POST);
+        }
+
+        if ($this->requestMethod == "PUT") {
+            return $historico->update($this->uri, $_POST);
+        }
+
+        if ($this->requestMethod == "DELETE") {
+            return $historico->destroy($this->uri);
         }
     }
 }
