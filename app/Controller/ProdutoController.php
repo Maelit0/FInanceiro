@@ -25,6 +25,6 @@ class ProdutoController extends ProdutoModel
     }
     public function  destroy($id)
     {
-        return $this->deletar($id,'movimentacao');
+        return $this->deletar($id,'produtos');
     }
 }

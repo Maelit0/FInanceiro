@@ -47,7 +47,7 @@ abstract class RouteSwitch
 
     protected function movimentacao()
     {
-       
+
         $movimentacao = new HomeController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -71,17 +71,9 @@ abstract class RouteSwitch
         }
     }
 
-    protected function produto()
+    protected function produtos()
     {
         $cliente = new ProdutoController();
-
-        $middleware = new TokenValidator();
-
-        $verificacao =  $middleware->verify();
-
-        if (!$verificacao) {
-            throw new Exception("Token Inválido ou não fornecido");
-        }
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             return $cliente->show($this->uri);
@@ -108,14 +100,6 @@ abstract class RouteSwitch
     {
 
         $historico = new ProdutoController();
-
-        $middleware = new TokenValidator();
-
-        $verificacao =  $middleware->verify();
-
-        if (!$verificacao) {
-            throw new Exception("Token Inválido ou não fornecido");
-        }
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             return $historico->show($this->uri);

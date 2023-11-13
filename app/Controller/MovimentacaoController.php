@@ -16,14 +16,14 @@ class MovimentacaoController extends MovimentacaoModel
     }
     public function show($id)
     {
-
+        return $this->selectOne($id);
     }
     public function update($id, $params)
     {
-        return $this->update('movimentacao',$params.$id);
+        return $this->update('movimentacao', $params . $id);
     }
     public function destroy($id)
     {
-        return $this->deletar($id,'movimentacao');
+        return $this->deletar($id, 'movimentacao');
     }
 }
