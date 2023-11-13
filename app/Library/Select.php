@@ -6,15 +6,15 @@ use PDO;
 
 class Select extends Connection
 {
-  
+
     public function select($table, $columns = ['*'], $conditions = [], $orderBy = null, $limit = null)
     {
-        $sql = "SELECT " . implode(", ", $columns) . " FROM $table";    
+        $sql = "SELECT " . implode(", ", $columns) . " FROM $table";
 
         if (!empty($conditions)) {
             $whereClauses = [];
             foreach ($conditions as $column => $value) {
-                $whereClauses[] = "$column = :$column";
+                $whereClauses[] = "$value";
             }
             $sql .= " WHERE " . implode(" AND ", $whereClauses);
         }
@@ -28,11 +28,7 @@ class Select extends Connection
         }
 
         $stmt = $this->db->prepare($sql);
-
-        foreach ($conditions as $column => $value) {
-            $stmt->bindValue(":$column", $value);
-        }
-
+        
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

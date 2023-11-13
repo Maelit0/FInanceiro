@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use ServicoModel;
+use App\Model\ServicoModel;
 
 class ServicoController extends ServicoModel
 {

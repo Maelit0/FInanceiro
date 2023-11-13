@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 use App\Library\Delete;
 use App\Library\Insert;
 use App\Library\Select;

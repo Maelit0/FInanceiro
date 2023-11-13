@@ -10,18 +10,16 @@ class HomeController extends HomeModel
     {
         return $this->getAll();
     }
+    public function show($id)
+    {
+        return $this->selectOne($id);
+    }
     public function store($params)
     {
     }
-
-    public function show($id)
-    {
-    }
-
     public function update($id, $params)
     {
     }
-
     public function destroy($id)
     {
     }
