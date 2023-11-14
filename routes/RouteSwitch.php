@@ -7,6 +7,7 @@ use App\Controller\HomeController;
 use App\Controller\MovimentacaoController;
 use App\Controller\ProdutoController;
 use App\Controller\ServicoController;
+use App\Core\NullException;
 use App\Token\JwtValidator;
 use App\Token\TokenValidator;
 use Exception;
@@ -57,9 +58,17 @@ abstract class RouteSwitch
 
     protected function movimentacao()
     {
-        $requestBody = json_decode(file_get_contents('php://input'), true);
         $movimentacao = new MovimentacaoController();
 
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+
+        $requiredFields = ['descricao', 'id_cliente', 'tipo', 'valor'];
+        foreach ($requiredFields as $field) {
+            if (empty($requestBody[$field])) {
+                throw new NullException($this->requestMethod);
+            }
+        }
+        $movimentacao = new MovimentacaoController();
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             print json_encode($movimentacao->show($this->uri));
             return;
@@ -108,7 +117,7 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "PUT") {
-            print json_encode($produtos->update($this->uri, $_POST));
+            print json_encode($produtos->update($this->uri, $requestBody));
             return;
         }
 
@@ -121,6 +130,12 @@ abstract class RouteSwitch
     {
         $requestBody = json_decode(file_get_contents('php://input'), true);
 
+        $requiredFields = ['descricao', 'id_cliente', 'tipo', 'valor'];
+        foreach ($requiredFields as $field) {
+            if (empty($requestBody[$field])) {
+                throw new NullException($this->requestMethod);
+            }
+        }
         $servicos = new ServicoController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -166,7 +181,7 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "POST") {
-            print json_encode($historico->store($_POST));
+            print json_encode($historico->store($requestBody));
             return;
         }
 

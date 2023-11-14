@@ -31,6 +31,7 @@ class Select extends Connection
         
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
     }
 }
