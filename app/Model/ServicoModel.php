@@ -19,7 +19,7 @@ class ServicoModel
         $salvar = new Insert();
         return $salvar->insert('servicos', $arrValues);
     }
-    public function  atualizar($id, $params)
+    public function  atualizar($params,$id)
     {
         $update = new Update();
         return $update->update('servicos', $params, "id = $id");
@@ -32,6 +32,6 @@ class ServicoModel
     public function  deletar($params)
     {
         $deletar = new Delete();
-        return $deletar->delete('servicos', $params);
+        return $deletar->delete('servicos',$params);
     }
 }

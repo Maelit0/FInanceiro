@@ -21,10 +21,10 @@ class ServicoController extends ServicoModel
     }
     public function update($id, $params)
     {
-        return $this->update('servicos', $params, $id);
+        return $this->atualizar($params, $id);
     }
     public function destroy($id)
     {
-        return $this->deletar($id, 'servicos');
+        return $this->deletar($id);
     }
 }

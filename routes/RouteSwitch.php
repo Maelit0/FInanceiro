@@ -4,6 +4,7 @@ namespace Routes;
 
 use App\Controller\HistoricoController;
 use App\Controller\HomeController;
+use App\Controller\MovimentacaoController;
 use App\Controller\ProdutoController;
 use App\Controller\ServicoController;
 use App\Token\JwtValidator;
@@ -14,6 +15,8 @@ abstract class RouteSwitch
 {
     public $requestMethod;
     public $uri;
+    public $requestBody;
+
 
     public function __construct()
     {
@@ -54,8 +57,8 @@ abstract class RouteSwitch
 
     protected function movimentacao()
     {
-
-        $movimentacao = new HomeController();
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+        $movimentacao = new MovimentacaoController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             print json_encode($movimentacao->show($this->uri));
@@ -68,12 +71,12 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "POST") {
-            print json_encode($movimentacao->store($_POST));
+            print json_encode($movimentacao->store($requestBody));
             return;
         }
 
         if ($this->requestMethod == "PUT") {
-            print json_encode($movimentacao->update($this->uri, $_POST));
+            print json_encode($movimentacao->update($this->uri, $requestBody));
             return;
         }
 
@@ -85,6 +88,8 @@ abstract class RouteSwitch
 
     protected function produtos()
     {
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+
         $produtos = new ProdutoController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -98,7 +103,7 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "POST") {
-            print json_encode($produtos->store($_POST));
+            print json_encode($produtos->store($requestBody));
             return;
         }
 
@@ -112,8 +117,10 @@ abstract class RouteSwitch
             return;
         }
     }
-    protected function  servicos()
+    protected function servicos()
     {
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+
         $servicos = new ServicoController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
@@ -127,12 +134,12 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "POST") {
-            print json_encode($servicos->store($_POST));
+            print json_encode($servicos->store($requestBody));
             return;
         }
 
         if ($this->requestMethod == "PUT") {
-            print json_encode($servicos->update($this->uri, $_POST));
+            print json_encode($servicos->update($this->uri, $requestBody));
             return;
         }
 
@@ -141,10 +148,10 @@ abstract class RouteSwitch
             return;
         }
     }
-
-
     protected function  historico()
     {
+
+        $requestBody = json_decode(file_get_contents('php://input'), true);
 
         $historico = new HistoricoController();
 
@@ -164,7 +171,7 @@ abstract class RouteSwitch
         }
 
         if ($this->requestMethod == "PUT") {
-            print json_encode($historico->update($this->uri, $_POST));
+            print json_encode($historico->update($this->uri, $requestBody));
             return;
         }
 

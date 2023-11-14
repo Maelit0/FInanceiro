@@ -4,6 +4,7 @@
 
 
 use App\Core\Router;
+use App\Library\Delete;
 use App\Library\Insert;
 use App\Library\Select;
 use App\Library\Update;
@@ -24,3 +25,7 @@ $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=bancoprojeto;user=ismael;p
 $insert = new Insert($pdo);
 $pdo = new PDO("pgsql:host=localhost;port=5432;dbname= bancoprojeto;user= ismael;password=ismael123");
 $update = new Update($pdo);
+$pdo = new PDO("pgsql:host=localhost;port=5432;dbname= bancoprojeto;user= ismael;password=ismael123");
+$update = new Delete($pdo);
+
+

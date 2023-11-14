@@ -12,21 +12,12 @@ class Update extends Connection
             $updateColumns[] = "$column = :$column";
         }
 
-        $updateValues = [];
-        foreach ($conditions as $column => $value) {
-            $updateValues[] = "$column = :condition_$column";
-        }
-
-        $sql = "UPDATE $table SET " . implode(", ", $updateColumns) . " WHERE " . implode(" AND ", $updateValues);
+        $sql = "UPDATE $table SET " . implode(", ", $updateColumns) . " WHERE " . $conditions;
 
         $stmt = $this->db->prepare($sql);
 
         foreach ($data as $column => $value) {
-            $stmt->bindValue(":$column", $value);
-        }
-
-        foreach ($conditions as $column => $value) {
-            $stmt->bindValue(":condition_$column", $value);
+            $stmt->bindValue(":$column", "$value");
         }
 
         return $stmt->execute();
