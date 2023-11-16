@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Model;
+
 use App\Library\Select;
+use stdClass;
 
 class HistoricoModel
 {
@@ -8,8 +11,8 @@ class HistoricoModel
     {
         $select = new Select();
         $relatorio = new stdClass();
-        $relatorio->produtos = $select->select('produtos');
-        $relatorio->servicos = $select->select('servicos');
+        $relatorio->produtos = $select->select('produtos', ['*']);
+        $relatorio->servicos = $select->select('servicos', ['*']);
         return $relatorio;
     }
 }

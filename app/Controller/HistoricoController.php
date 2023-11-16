@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use HistoricoModel;
+use App\Model\HistoricoModel;
 
 class HistoricoController extends HistoricoModel
 {

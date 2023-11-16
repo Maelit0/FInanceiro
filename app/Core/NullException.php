@@ -5,9 +5,9 @@ namespace App\Core;
 class NullException extends \Exception
 {
 
-  public function __construct($resquestMethod)
+  public function __construct()
   {
-    $message = "Não é possivel retornar valores nulos!";
+    $message = "Esta requisição está com valores necessarios faltando!";
     parent::__construct($message);
   }
 }

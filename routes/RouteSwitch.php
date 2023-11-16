@@ -55,7 +55,30 @@ abstract class RouteSwitch
             return;
         }
     }
-
+    protected function  getClientes()
+    {
+        $totalClientes = new HomeController();
+        print json_encode($totalClientes->getAllClients());
+        return;
+    }
+    protected function  getEntrada(): void
+    {
+        $entrada = new HomeController();
+        print json_encode($entrada->getALlEntradas());
+        return;
+    }
+    protected function  getSaida()
+    {
+        $saida = new HomeController();
+        print json_encode($saida->getAllSaidas());
+        return;
+    }
+    protected function  getProdutos()
+    {
+       $produtos = new HomeController();
+       print json_encode($produtos->getAllProdutos());
+       return;
+    }
     protected function movimentacao()
     {
         $movimentacao = new MovimentacaoController();
@@ -100,7 +123,12 @@ abstract class RouteSwitch
         $requestBody = json_decode(file_get_contents('php://input'), true);
 
         $produtos = new ProdutoController();
-
+        $requiredFields = ['quant_estoque', 'preco_de_venda', 'preco_de_compra', 'codigo_de_barras', 'descricao', 'nome', 'data_criacao', 'data_modificacao'];
+        foreach ($requiredFields as $field) {
+            if (empty($requestBody[$field])) {
+                throw new NullException($this->requestMethod);
+            }
+        }
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
             print json_encode($produtos->show($this->uri));
             return;
@@ -167,7 +195,12 @@ abstract class RouteSwitch
     {
 
         $requestBody = json_decode(file_get_contents('php://input'), true);
-
+        // $requiredFields = ['quant_estoque', 'preco_de_venda', 'preco_de_compra', 'codigo_de_barras', 'descricao', 'nome', 'data_criacao', 'data_modificacao'];
+        // foreach ($requiredFields as $field) {
+        //     if (empty($requestBody[$field])) {
+        //         throw new NullException($this->requestMethod);
+        //     }
+        // }
         $historico = new HistoricoController();
 
         if ($this->requestMethod == "GET" && !empty($this->uri)) {
