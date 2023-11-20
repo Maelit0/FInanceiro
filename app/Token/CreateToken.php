@@ -2,30 +2,19 @@
 
 namespace App\Token;
 
-use DateTimeImmutable;
-use Lcobucci\JWT\Encoding\ChainedFormatter;
-use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer\Key\InMemory;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
-use Lcobucci\JWT\Token\Builder;
 
 class CreateToken
 {
-    public function create()
+    public function  base64UrlEncode($data)
     {
+       return str_replace(['+','/','='], ['-',"_",''],base64_encode($data));
 
-        $tokenBuilder = new Builder(new JoseEncoder(), ChainedFormatter::default());
-        $algorithm = new Sha256();
-        $signingKey = InMemory::plainText('segredo');
-        $now   = new DateTimeImmutable();
-        $token = $tokenBuilder
-            ->issuedBy('localhost:8000/')
-            ->permittedFor('localhost:8000/')
-            ->identifiedBy('4f1g23a12aa')
-            ->issuedAt($now)
-            ->canOnlyBeUsedAfter($now->modify('+1 minute'))
-            ->expiresAt($now->modify('+1 hour'))
-            ->getToken($algorithm, $signingKey);
-        return $token->toString();
+    }
+    public function createToken()
+    {
+        $header = base64_encode('{"alg": "HS256","typ":"JWT"}');
+        $payload = base64_encode('{"sub": "' . md5(time()) . '"."name":"Ismael","iat": ' . time() . '}');
+        $signature = base64_encode(hash_hmac('sha256', $header . '.' . $payload, 'segredo', true));
+        return $header . '.' . $payload . '.' . $signature;
     }
 }

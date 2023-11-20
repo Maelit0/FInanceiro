@@ -79,6 +79,12 @@ abstract class RouteSwitch
        print json_encode($produtos->getAllProdutos());
        return;
     }
+    protected function  getFuncionarios()
+    {
+        $funcionarios = new HomeController;
+        print json_encode($funcionarios->getAllFuncionarios());
+        return;
+    }
     protected function movimentacao()
     {
         $movimentacao = new MovimentacaoController();

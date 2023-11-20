@@ -10,7 +10,6 @@ class HomeController extends HomeModel
 
     public function index()
     {
-        $token = new CreateToken;
         return $this->getAll();
     }
     public function show($id)
@@ -29,7 +28,7 @@ class HomeController extends HomeModel
     }
     public function  getALlEntradas()
     {
-          return $this->getTotalEntradas();
+        return $this->getTotalEntradas();
     }
     public function  getAllSaidas()
     {
@@ -38,6 +37,10 @@ class HomeController extends HomeModel
     public function  getAllProdutos()
     {
         return $this->getTotalClientes();
+    }
+    public function  getFuncionarios()
+    {
+        return $this->getAllFuncionarios();
     }
     public function destroy($id)
     {
